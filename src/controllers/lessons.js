@@ -26,6 +26,34 @@ class Lessons{
                     })
                 }
     }
+
+    static getLessonsBYClass = async(req, res) => {
+        const lessonsByClass = [];
+        db.where("targetClass", "==", `${req.body.targetClass}`).get().then((qSnapshot)=>{
+            qSnapshot.forEach((doc)=>{
+                lessonsByClass.push(doc.data());
+            });
+            return res.status(200).send({
+                data: lessonsByClass,
+                message: "Data retrieved Succesfully"
+            })
+        });
+
+    }
+
+    static getLessonsByTeacher = async(req, res) => {
+        const lessonByTeacher = [];
+        db.where("teacher", "==", `${req.body.teacher}`).get().then((qSnapshot)=>{
+            qSnapshot.forEach((doc)=>{
+                lessonByTeacher.push(doc.data());
+            });
+            return res.status(200).send({
+                data: lessonByTeacher,
+                message: "Data retrieved Succesfully"
+            })
+        });
+
+    }
     
 }
 export default Lessons;
