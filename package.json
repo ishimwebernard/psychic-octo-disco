@@ -1,0 +1,35 @@
+{
+  "name": "psychic-octo-disco",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishimwebernard/psychic-octo-disco.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ishimwebernard/psychic-octo-disco/issues"
+  },
+  "homepage": "https://github.com/ishimwebernard/psychic-octo-disco#readme",
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/node": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "body-parser": "^1.19.0",
+    "date-and-time": "^1.0.0",
+    "express": "^4.17.1",
+    "firebase": "^8.6.3",
+    "g": "^2.0.1",
+    "joi": "^17.4.0",
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-async-to-generator": "^7.13.0"
+  }
+}
