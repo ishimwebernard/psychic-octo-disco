@@ -4,7 +4,7 @@ import lessonsValidator from '../../validators/lessonUploadValidator'
  
 const router = Router();
 router.post('/', lessonsValidator.ValidateLesson, lessonsController.UploadLesson)
-router.get('/lessonbyclass', lessonsValidator.ValidateGetByClass, lessonsController.getLessonsBYClass)
-router.get('/lessonbyteacher', lessonsValidator.ValidateLessonByTeacher, lessonsController.getLessonsByTeacher)
+router.post('/lessonbyclass', lessonsValidator.ValidateGetByClass, lessonsController.getLessonsBYClass)
+router.post('/lessonbyteacher', lessonsValidator.ValidateLessonByTeacher, lessonsController.getLessonsByTeacher)
 
 export default router;
