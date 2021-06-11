@@ -1,4 +1,5 @@
 import firebase from '../firebaseconfig'
+const db = firebase.firestore().collection("classcodes");
 
 class Users{
     static login = (req, res) =>{
@@ -18,5 +19,26 @@ class Users{
 });
   
     }
+    static studeAuth = (req, res) => {
+        let classcode;
+        db.where("code", "==", `${req.body.code}`).get().then((qSnapshot)=>{
+            //console.log(qSnapshot)
+            qSnapshot.forEach((doc)=>{
+                classcode = doc.data().code
+
+            });
+            if(classcode){
+                return res.status(200).send({
+                    message: "Authorized"
+                })
+            }else{
+                return res.status(403).send({
+                    data: 'No class found'
+                })
+            }
+          
+        });
+    }
+
 }
 export default Users
