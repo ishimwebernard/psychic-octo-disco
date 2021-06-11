@@ -59,13 +59,12 @@ class Lessons{
     }
 
     static deleteLesson = async(req, res)=> {
-        try{
-            const serverres = await db.doc(req.doc).delete();
-            console.log(serverres)
-            return res.status(200).send({data: 'Material deleted succesfully'}) 
-        }catch(error){
-            return res.status(400).send({data: error.message})
-        }
+
+            console.log(req.body.doc)
+            const c = await firebase.firestore().collection('lessons').doc(String(req.body.doc)).delete();
+            return res.status(200).send({
+                message: "Lesson deleted succesfully"
+            })
        
     }
     
