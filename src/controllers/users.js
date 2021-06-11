@@ -20,15 +20,16 @@ class Users{
   
     }
     static studeAuth = (req, res) => {
-        let classcode;
+        let classcode, className;
         db.where("code", "==", `${req.body.code}`).get().then((qSnapshot)=>{
             //console.log(qSnapshot)
             qSnapshot.forEach((doc)=>{
                 classcode = doc.data().code
-
+                className = doc.data().classname
             });
             if(classcode){
                 return res.status(200).send({
+                    data: className,
                     message: "Authorized"
                 })
             }else{
