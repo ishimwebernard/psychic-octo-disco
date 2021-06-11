@@ -1,12 +1,14 @@
 import firebase from '../firebaseconfig'
 import date from "date-and-time"
+import { v4 as uuidv4 } from 'uuid'
 const db = firebase.firestore().collection("lessons");
 
 
 class Lessons{
     static UploadLesson = async (req, res) =>{
                 try{
-                    const docRef = await db.add(
+                    let docUUID = uuidv4();
+                    const docRef = await db.doc(docUUID).set(
                         {description: req.body.description,
                         title: req.body.title,
                         targetClass: req.body.targetClass,
@@ -14,7 +16,8 @@ class Lessons{
                         userId: req.body.userId,
                         teacher: req.body.teacher,
                         file: req.body.file,
-                        dateUPloaded:  String(date.format((new Date()), 'ddd, MMM DD YYYY'))
+                        dateUPloaded:  String(date.format((new Date()), 'ddd, MMM DD YYYY')),
+                        docUUID
                     }
                     )
                     return res.status(200).send({
@@ -53,6 +56,17 @@ class Lessons{
             })
         });
 
+    }
+
+    static deleteLesson = async(req, res)=> {
+        try{
+            const serverres = await db.doc(req.doc).delete();
+            console.log(serverres)
+            return res.status(200).send({data: 'Material deleted succesfully'}) 
+        }catch(error){
+            return res.status(400).send({data: error.message})
+        }
+       
     }
     
 }
